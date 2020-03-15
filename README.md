@@ -8,4 +8,4 @@ If be honestly, I created this repository only for the studying LaTeX:)
 - [Russian Language Task Description](https://github.com/JuiceFV/Data_Analyst_Internship_Task/blob/master/Task_Descriptio_RUS.pdf) ([Download](https://github.com/JuiceFV/Data_Analyst_Internship_Task/raw/master/Task_Descriptio_RUS.pdf))
 
 ## The Tasks Solutions 
-
+- [Russian Language Soluton](https://github.com/JuiceFV/Data_Analyst_Internship_Task/blob/master/Solution_RUS.pdf) ([Download](https://github.com/JuiceFV/Data_Analyst_Internship_Task/raw/master/Solution_RUS.pdf))
