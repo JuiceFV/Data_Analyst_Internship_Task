@@ -1,2 +1,10 @@
-# Data_Analyst_Internship_Task
-The task I received by Rambler Group.
+# Data Analyst Internship Task
+This repository contains the solutions of the Data Analyst Internship tasks.
+If be honestly, I created this repository only for the studying LaTeX:)
+
+
+## The Tasks Descriptions
+- [English Language Task Description ](https://github.com/JuiceFV/Data_Analyst_Internship_Task/blob/master/Task_Description_ENG.pdf) ([Download](https://github.com/JuiceFV/Data_Analyst_Internship_Task/raw/master/Task_Description_ENG.pdf))
+
+## The Tasks Solutions 
+
