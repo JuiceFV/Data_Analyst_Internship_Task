@@ -1,0 +1,96 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage{booktabs} 
+\usepackage{amsmath}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+\hypersetup{
+	colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\title{\textcolor{blue}{The Tasks for Data Analyst Intership by Rambler Group}}
+\date{03-13-2020}
+\author{Aleksandr Kasian}
+
+\begin{document}
+
+\begin{titlepage}
+	\maketitle
+	\pagenumbering{gobble}
+\end{titlepage}
+\pagenumbering{arabic}
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section*{Description}
+\addcontentsline{toc}{section}{\protect\numberline{}Description}%
+The tasks in the following document were represented by Rambler Group to the role "the Data Analyst Internship".
+
+\section*{Problem 1}
+\addcontentsline{toc}{section}{\protect\numberline{}Problem 1}%
+Rambler Group's advertising campaign uses most fascinating and most memorable banners.
+Analytics have access to the databases containing data regard the banner' showing.
+The \textbf{Shows\_table} contains:
+\begin{itemize}
+	\item \emph{show\_id} - an identifier of a showing 
+	\item \emph{day} - a day of a showig
+\end{itemize}
+
+\begin{table}[h]
+	\begin{tabular}{|l|l|}
+	\hline
+	show\_id & day        \\ \hline
+	12367    & 2018-10-04 \\ \hline
+	28736    & 2019-02-22 \\ \hline
+	19862    & 2019-01-31 \\ \hline
+	\end{tabular}
+\end{table}
+
+\noindent
+The \textbf{Click\_table} contains:
+\begin{itemize}
+	\item \emph{click\_id} - a show identifier clicked by an user
+	\item \emph{bounce} - an user dismissing from an advertising after click (0 - when an user relinked to the site 
+	he keened in the information on the site. 1 - an user immediatly left the site.)
+\end{itemize}
+
+\begin{table}[h]
+	\begin{tabular}{|l|l|}
+		\hline
+		click\_id & bounce	\\ \hline
+		12367 	  & 1       \\ \hline
+		15627 	  & 0       \\ \hline
+		28735     & 0		\\ \hline	
+	\end{tabular}
+\end{table}
+
+\noindent
+You need to get all users who clicked at a banner in February 2020, and 
+they din't reject an advertising.
+
+\newpage
+\section*{Problem 2}
+\addcontentsline{toc}{section}{\protect\numberline{}Problem 2}%
+
+\noindent
+The friendly Rambler Group's community likes to play in the table football: 
+At the odd days they play before lunch, at the even days the play after lunch.
+They are splitting at the N teams among each other, and every team plays with each another team.
+Because of the splitting onto the teams is randomly, the product of the games is random.
+Also I would note that there are no ties. Only win or lose.
+\begin{enumerate}
+	\item Estimate the probability if one of the teams will finish the tournament without defeat.
+	\item How many times do you need to hold a tournament, so that with a probability of 98\% at least once this happened?
+\end{enumerate} 
+\end{document}
