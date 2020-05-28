@@ -1,0 +1,537 @@
+\documentclass[14pt, a4paper]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[left=25pt, right=25pt, bottom=33pt, top=33pt]{geometry}
+
+\usepackage[english]{babel}
+\usepackage{booktabs} 
+\usepackage{amsmath}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[normalem]{ulem}
+
+\newcommand{\stkout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}
+
+
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\hypersetup{
+	colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{\textcolor{blue}{The Solution For The Tasks}}
+\date{05-27-2020}
+\author{Aleksandr Kasian}
+
+\begin{document}
+
+\begin{titlepage}
+	\maketitle
+	\pagenumbering{gobble}
+\end{titlepage}
+\pagenumbering{arabic}
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section*{Solution of the Problem 1}
+\addcontentsline{toc}{section}{\protect\numberline{}Solution of the Problem 1}
+\subsection*{Recall the Task}
+\addcontentsline{toc}{subsection}{\protect\numberline{}Task's Description}
+
+Rambler Group's advertising campaign uses most fascinating and most memorable banners.
+Analytics have access to the databases containing data regard the banner' showing.
+The \textbf{Shows\_table} contains:
+\begin{itemize}
+	\item \emph{show\_id} - an identifier of a showing 
+	\item \emph{day} - a day of a showig
+\end{itemize}
+
+\begin{table}[h]
+	\begin{tabular}{|l|l|}
+	\hline
+	show\_id & day        \\ \hline
+	12367    & 2018-10-04 \\ \hline
+	28736    & 2019-02-22 \\ \hline
+	19862    & 2019-01-31 \\ \hline
+	\end{tabular}
+\end{table}
+
+\noindent
+The \textbf{Click\_table} contains:
+\begin{itemize}
+	\item \emph{click\_id} - a show identifier clicked by an user
+	\item \emph{bounce} - an user dismissing from an advertising after click (0 - when an user relinked to the site 
+	he keened in the information on the site. 1 - an user immediatly left the site.)
+\end{itemize}
+
+\begin{table}[h]
+	\begin{tabular}{|l|l|}
+		\hline
+		click\_id & bounce	\\ \hline
+		12367 	  & 1       \\ \hline
+		15627 	  & 0       \\ \hline
+		28735     & 0		\\ \hline	
+	\end{tabular}
+\end{table}
+
+\noindent
+You need to get all users who clicked at a banner in February 2020, and 
+they din't reject an advertising.
+
+\subsection*{Step-by-Step Solution}
+\addcontentsline{toc}{subsection}{\protect\numberline{}The Solution}
+
+\begin{enumerate}
+\item First of all, I'd like to obtain all users, I mean the whole database of
+users, without any filters. But I baffled by the task, because it is clearly 
+said that we need to fetch the "\textbf{users}", however I do not really aware 
+what exactly is the "\textbf{users}". Ensuing of this I decided to derive the 
+\emph{show\_id} (it also can be the \emph{click\_id}, result will be the same).
+
+\begin{lstlisting}[language=SQL]
+SELECT show_id FROM Shows_table
+\end{lstlisting}
+
+\item The next scanty modification is to retrieve unique \emph{show\_id}. 
+For instance, if an user clicked twice on the same banner, it shouldn't be represented
+twice, therefore distinct it. 
+
+\begin{lstlisting}[language=SQL]
+SELECT DISTINCT show_id FROM Shows_table
+\end{lstlisting}
+
+\item The next step is to detect those who clicked and remained on the advertising site.
+The \emph{INER JOIN} the most appropriating command for this purpose.
+
+\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape%
+The INNER JOIN keyword selects records that have matching values in both tables}}.
+
+\begin{lstlisting}[language=SQL]
+SELECT DISTINCT show_id FROM Shows_table
+INNER JOIN Clicks_table ON
+show_id=click_id AND bounce='0' 
+\end{lstlisting}
+Let's deem this query on the example.
+
+
+\begin{minipage}{.3\linewidth}
+    \begin{tabular}{|l|l|}
+        \hline
+        show\_id & day        \\ \hline
+        \cellcolor[HTML]{3FBFB8} 12367    & 2018-10-04 \\ \hline
+        \cellcolor[HTML]{BF3F41} 15627    & 2012-02-22 \\ \hline
+        \cellcolor[HTML]{D9DD1C} 28736    & 2019-01-31 \\ \hline
+    \end{tabular}
+\end{minipage}
+\begin{minipage}{.3\linewidth}
+    \begin{tabular}{|l|l|}
+        \hline
+        click\_id & bounce	\\ \hline
+        \cellcolor[HTML]{3FBFB8} 12367 	   & \cellcolor[HTML]{D60E0E} 1       \\ \hline
+        \cellcolor[HTML]{BF3F41} 15627 	   & \cellcolor[HTML]{4CDD1C} 0       \\ \hline
+        \cellcolor[HTML]{D9DD1C} 28736     & \cellcolor[HTML]{4CDD1C} 0		\\ \hline	
+    \end{tabular}
+\end{minipage}
+
+In the above case the banners which ids are \textbf{15627} and \textbf{28735}
+are those banners that an user remained by clicking on.
+So, this request returns such list:
+
+\begin{lstlisting}[language=SQL]
+SELECT DISTINCT show_id FROM Shows_table 
+\end{lstlisting}
+
+
+\begin{tabular}{|c|}
+    \hline
+    12367 \\ \hline
+    15627 \\ \hline
+    28736 \\ \hline
+\end{tabular}
+
+If be honest this one does the same as the previous one.
+
+\begin{lstlisting}[language=SQL]
+SELECT DISTINCT show_id FROM Shows_table 
+INNER JOIN Clicks_table ON
+show_id=click_id
+\end{lstlisting}
+
+And the last thing in this subsection is to filter the case when an user remains
+on the advertising site. According the task "\emph{bounce - an user dismissing from an advertising after click (0 - when an user relinked to the site 
+he keened in the information on the site. 1 - an user immediatly left the site.)}"
+This request perfectly does this, and returns such id's list.
+
+\begin{lstlisting}[language=SQL]
+SELECT DISTINCT show_id FROM Shows_table
+INNER JOIN Clicks_table ON
+show_id=click_id AND bounce='0' 
+\end{lstlisting}
+
+\begin{tabular}{|c|}
+    \hline
+    28736 \\ \hline
+    15627 \\ \hline
+\end{tabular}
+
+\item The last what we should to do is to distill by date.
+The task says "\emph{You need to get all users who clicked at a banner in February 2020, and 
+they din't reject an advertising.}", it does pretty simple in SQL, by adding up this to the request.
+
+\begin{lstlisting}[language=SQL]
+... day BETWEEN '2020-02-01' AND '2020-02-29'
+\end{lstlisting}
+
+\item The result looks like this:
+
+\begin{lstlisting}[language=SQL]
+SELECT DISTINCT show_id FROM Shows_table
+INNER JOIN Clicks_table ON
+show_id=click_id AND bounce='0' AND day BETWEEN '2020-02-01' AND '2020-02-29'
+\end{lstlisting}
+
+In our example this query has to return only the \textbf{15627}, 
+because this is the only \emph{click\_id} within February 2020.
+
+\end{enumerate}
+
+\subsection*{Testing}
+\addcontentsline{toc}{subsection}{\protect\numberline{}Test}
+In purpose to test my solution I was using the \href{http://sqlfiddle.com/}{SQLFiddle} and PostgreSQL 9.6.
+
+\begin{enumerate}
+\item I created the test-tables, using DLL, by these queries:
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE Shows_table (
+    show_id INT,
+    day DATE
+);       
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE Clicks_table (
+    click_id INT,
+    bounce BOOLEAN
+);       
+\end{lstlisting}
+
+\item Fill them (tables) up, by using these requests
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO Shows_table (show_id, day) VALUES (12367, '2018-10-04');
+INSERT INTO Shows_table (show_id, day) VALUES (28736, '2019-02-22');
+INSERT INTO Shows_table (show_id, day) VALUES (19862, '2019-01-31');
+INSERT INTO Shows_table (show_id, day) VALUES (11111, '2020-02-04');
+INSERT INTO Shows_table (show_id, day) VALUES (22222, '2020-02-01');
+INSERT INTO Shows_table (show_id, day) VALUES (33333, '2020-02-29');
+INSERT INTO Clicks_table (click_id, bounce) VALUES (12367, '1');
+INSERT INTO Clicks_table (click_id, bounce) VALUES (28736, '0');
+INSERT INTO Clicks_table (click_id, bounce) VALUES (19862, '0');
+INSERT INTO Clicks_table (click_id, bounce) VALUES (11111, '1');
+INSERT INTO Clicks_table (click_id, bounce) VALUES (22222, '0');
+INSERT INTO Clicks_table (click_id, bounce) VALUES (33333, '0');      
+\end{lstlisting}
+
+And now the tables looks like these:
+
+\begin{minipage}{.3\linewidth}
+    \begin{tabular}{|l|l|}
+    \hline
+    show\_id & day        \\ \hline
+    12367    & 2018-10-04 \\ \hline
+    28736    & 2019-02-22 \\ \hline
+    19862    & 2019-01-31 \\ \hline
+    11111    & 2020-02-04 \\ \hline
+    22222    & 2020-02-01 \\ \hline
+    33333    & 2020-02-29 \\ \hline
+    \end{tabular}
+\end{minipage}
+\begin{minipage}{.3\linewidth}
+    \begin{tabular}{|l|l|}
+        \hline
+        click\_id & bounce \\ \hline
+        12367     & 1      \\ \hline
+        28736     & 0      \\ \hline
+        19862     & 0      \\ \hline
+        11111     & 1      \\ \hline
+        22222     & 0      \\ \hline
+        33333     & 0      \\ \hline
+    \end{tabular}
+\end{minipage}
+
+\item For this example the query (my solution) returns the \textbf{22222} and \textbf{33333}.
+\begin{itemize}
+    \item \textbf{12367} - isn't suitable, because an user left the site and it was in October 2018
+    \item \textbf{28736} - isn't suitable, because it was in February 2019.
+    \item \textbf{19862} - isn't suitable, because it was in January 2019.
+    \item \textbf{11111} - isn't suitable, because an user left the site.
+\end{itemize}
+\end{enumerate}
+
+\subsection*{Answer}
+\addcontentsline{toc}{subsection}{\protect\numberline{}Answer}
+The answer to the \textbf{Problem 1}
+\begin{lstlisting}[language=SQL]
+    SELECT DISTINCT show_id FROM Shows_table
+    INNER JOIN Clicks_table ON
+    show_id=click_id AND bounce='0' AND day BETWEEN '2020-02-01' AND '2020-02-29'
+\end{lstlisting}
+
+\newpage
+
+\section*{Solution of the Problem 2}
+\addcontentsline{toc}{section}{\protect\numberline{}Solution of the Problem 2}
+\subsection*{Recall the Task}
+\addcontentsline{toc}{subsection}{\protect\numberline{}Task's Description}
+
+The friendly Rambler Group's community likes to play in the table football: 
+At the odd days they play before lunch, at the even days the play after lunch.
+They are splitting at the N teams among each other, and every team plays with each another team.
+Because of the splitting onto the teams is randomly, the product of the games is random.
+Also I would note that there are no ties. Only win or lose.
+\begin{enumerate}
+	\item Estimate the probability if one of the teams will finish the tournament without defeat.
+	\item How many times do you need to hold a tournament, so that with a probability of 98\% at least once this happened?
+\end{enumerate} 
+
+\subsection*{Solution for the first question}
+\addcontentsline{toc}{subsection}{\protect\numberline{}Solution of the first part}
+
+\begin{table}[h]
+    \begin{tabular}{|l|}
+    \hline
+    What we have:                                                         \\ \hline
+    N - number of teams                                                   \\
+    P (win) = 1/2                                                         \\
+    P (lose) = 1/2                                                        \\ \hline
+    Necessary to seek:                                                    \\ \hline
+    P (if one of the teams will finish the tournament without defeat) - ? \\ \hline
+    \end{tabular}
+\end{table}
+\noindent
+There are two ways to solve it, the first one is the combinatorics and the second is the
+probability theory. I will show the each one.
+
+\subsubsection*{Combinatorics way}
+\addcontentsline{toc}{subsubsection}{\protect\numberline{}Combinatorics way}
+
+\begin{enumerate}
+    \item First of all we need to estimate how many games \emph{N} teams plays.
+    Because of each team plays with every another team, therefore the number of 
+    games is the number of combination N by 2. ("\emph{by 2}" because two 
+    teams participate in a game.)
+    \framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape%
+    I'd like to recall that the factorial of a positive integer n, denoted by n!, is the product of all positive integers less than or equal to n.
+    \newline For instance, the factorial of N is \(1 \times 2 \times 3 \times ... \times (N - 2) \times (N - 1) \times N.\)}}.
+    \[
+        \binom{N}{2} = \frac{N!}{2! \times (N - 2)!} = \frac{\stkout{1 \times 2 \times 3 \times ... \times (N - 2)} \times (N - 1) \times N}{2 \times \stkout{1 \times 2 \times 3 \times ... \times (N - 2)}}
+    = \frac{(N - 1) \times N}{2}
+    \]
+    \item Each team either wins nor loses, therefore there are two outcomes.
+    Ensuing of this the amount of all possible outcomes in whole tournament is \(2^{\frac{(N - 1) \times N}{2}}\).
+    \item Let's assume that the team \emph{A} is won each game in the tournament. 
+    It means that from the \emph{(N - 1)} games the team \emph{A} is won \emph{(N - 1)} games. 
+    Moreover, it means that the quantity of uncertain game's outcomes declines on \emph{(N - 1)}. 
+    Therefore the overall number of outcomes, with the condition that team \emph{A} wins all games is:
+    \[
+        2^{\frac{(N - 1) \times N}{2} - (N - 1)}
+    \]  
+    \item However, nobody knows which exactly team wins all games. It's not necessary that team \emph{A} wins,
+    as same as \emph{A} it could be either team \emph{B}, nor team \emph{C}, nor team \emph{D} and so on.
+    If we will deem each case (for each team), then the overall amount of outcomes increases by \emph{N} (number of teams) times. 
+    \[
+        \underbrace{2^{\frac{(N - 1) \times N}{2} - (N - 1)}}_\text{if team A wins}
+        + \underbrace{2^{\frac{(N - 1) \times N}{2} - (N - 1)}}_\text{OR team B wins}
+        + \underbrace{2^{\frac{(N - 1) \times N}{2} - (N - 1)}}_\text{OR team C wins}
+        + \dots
+        + \underbrace{2^{\frac{(N - 1) \times N}{2} - (N - 1)}}_\text{OR team N wins}
+    \]
+    For \emph{N} teams it (number of all possible outcomes, where one of the teams wins) equals to:
+    \[
+        N \times 2^{\frac{(N - 1) \times N}{2} - (N - 1)} 
+    \]
+    \item Recall that probability definition:
+
+    \framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape%
+    The probability of an event is a number indicating how likely that event will occur.
+    And the probability of an event is: \(P(E) = \frac{m}{N}\), where 
+    \emph{m} - the number of demanded outcomes and \emph{N} - the number of all possible outcomes.}} 
+
+    Therefore to obtain the probability of a team will finish the tournament without defeat we need to divide the number of outcomes where one of the teams is won whole tournament (\(N \times 2^{\frac{(N - 1) \times N}{2} - (N - 1)}\)) by number of all possible outcomes (\(2^{\frac{(N - 1) \times N}{2}}\)):
+    \[
+        P (E) =
+        \frac{N \times 2^{\frac{(N - 1) \times N}{2} - (N - 1)}}{2^{\frac{(N - 1) \times N}{2}}} =
+        N \times 2^{\frac{(N - 1) \times N}{2} - (N - 1) - \frac{(N - 1) \times N}{2}} =
+        N \times 2^{-(N - 1)} = \frac{N}{2^{N-1}}
+    \]
+    \item Here it is, the answer. It means that the probability of a team wins the whole tournament
+    without lose is \(\frac{N}{2^{N-1}}\).
+\end{enumerate}
+
+\subsubsection*{Probability theory way}
+\addcontentsline{toc}{subsubsection}{\protect\numberline{}Probability theory way}
+If be honest this approach much easier than previous one. 
+
+\begin{enumerate}
+    \item Let's assume that the team \emph{A} wins each game in the tournament, and the 
+    probability of this event is \((\frac{1}{2})^{N-1}\). \(\frac{1}{2}\) - the probability of an outcome (whether lose nor victory) of one game.
+    And \((N - 1)\) the number of games which plays the team \emph{A}.
+    \[
+        \underbrace{\frac{1}{2}}_\text{A wins 1-st game} 
+        \times \underbrace{\frac{1}{2}}_\text{AND A wins 2-nd game} 
+        \times \underbrace{\frac{1}{2}}_\text{AND A wins 3-d game} 
+        \times \dots
+        \times \underbrace{\frac{1}{2}}_\text{AND A wins (N - 1)-th game}
+    \]
+    \item However the probability of that the \textbf{one} of the teams wins the tournament is
+    \[
+        P(\text{team A wins}) + P(\text{team B wins}) + P(\text{team C wins})
+        + \dots + P(\text{team N wins}) = 
+    \]
+    \[
+        = \underbrace{\left( \frac{1}{2} \right)^{N-1} 
+        + \left( \frac{1}{2} \right)^{N-1} 
+        + \left( \frac{1}{2} \right)^{N-1} + \dots 
+        + \left( \frac{1}{2} \right)^{N-1}}_\text{N times} = N \times \left( \frac{1}{2} \right)^{N-1} = \frac{N}{2^{N-1}}
+    \]
+    \item So, the probability that one of the teams wins the tournament without defeat is 
+    \[
+        P(E) = \frac{N}{2^{N-1}}
+    \]
+\end{enumerate}
+
+\subsection*{Solution of the second part}
+\addcontentsline{toc}{subsection}{\protect\numberline{}Solution of the second part}
+\textbf{Let's recall the question:}
+\newline
+How many times do you need to hold a tournament, so that with a probability of 98\% at least once this happened (one of the teams wins the tournament without defeat)?
+
+\begin{enumerate}
+    \item Let \emph{x} be the quantity of tournaments required to befell to approximate the probability of the event (victory without defeat) to 98\%.
+    \item Then,
+    \[
+        P(\text{it happens at least once}) = 1 - P(\text{it never happens}) =
+        1 - (1 - N \times 2^{1-N})^x 
+    \]
+    Let's explore the equation above. In the previous part we've figured out the 
+    probability that one of the teams wins the whole tournament without defeat 
+    is \(\frac{N}{2^{N-1}}\) or \(\left( N \times 2^{1 - N} \right)\). Of course the 
+    probability of that this event never happens is \emph{(100\% - probability of happens at least once)}.
+    Therefore, in our case it looks like \(1 - \left( N \times 2^{1 - N} \right)\), in other words
+    this equation shows us the probability that there is no a team which wins a tournament without defeat.
+    But this probability represents the only tournament, however we have \emph{x} tournaments, and in the each one there 
+    is shouldn't be a team which wins at least 1 tournament without defeat.
+    \[
+       P(\text{it never happens}) = 
+    \]
+    \[
+        \underbrace{\underbrace{1 - \left( N \times 2^{1 - N} \right)}_\text{NOT today} 
+        \times \underbrace{1 - \left( N \times 2^{1 - N} \right)}_\text{AND NOT tomorrow}
+        \times \dots \times
+        \underbrace{1 - \left( N \times 2^{1 - N} \right)}_\text{AND NOT after x days}}_\text{x times} =
+        \left(1 - N \times 2^{1 - N}\right)^x
+    \]
+    And the last thing, when we subtracting from 100\% the probability of the event when there is no 
+    a team which wins at least one tournament without defeat. This shows us the probability when a team 
+    which wins at least one tournament exsists. 
+    \item And according the task's condition this probability equal to 98\% or 0.98.
+    \begin{itemize}
+        \item \(P(\text{it happens at least once}) = 1 - P(\text{it never happens}) = 0.98 \implies \)
+        \item \(P(\text{it never happens}) = \left(1 - N \times 2^{1 - N}\right)^x = 0.02\)
+    \end{itemize}
+    \item Substitute it under logariphm
+    \[
+        \log \bigl(\left(1 - N \times 2^{1 - N}\right)^x\bigr) = \log 0.02     
+    \]
+    \item And use \href{https://www.rapidtables.com/math/algebra/logarithm/Logarithm_Rules.html#power%20rule}{log-power rule}
+    \[
+        x \times \log \left(1 - N \times 2^{1 - N}\right) = \log 0.02
+    \]
+    \item Derive the \emph{x}
+    \[
+        x = \frac{\log 0.02}{\log \left(1 - N \times 2^{1 - N}\right)}  
+    \]
+    Here is it! The number of required tournaments is \(\frac{\log 0.02}{\log \left(1 - N \times 2^{1 - N}\right)} \).
+    Of course it depends on number of teams, for instance for two teams the only tournament enough.
+    
+\end{enumerate}
+
+\subsection*{Answer}
+\addcontentsline{toc}{subsection}{\protect\numberline{}Answer}
+The answer for the \textbf{Problem 2}
+
+\begin{enumerate}
+    \item The probability that one of the teams wins the tournament without defeat is \(\frac{N}{2^{N-1}}\)
+    \item The number of required to befell tournaments to approximate te probability of the event (victory without defeat) to 98\% is 
+    \(\frac{\log 0.02}{\log \left(1 - N \times (2)^{1 - N}\right)}\)
+\end{enumerate}
+
+\end{document}
