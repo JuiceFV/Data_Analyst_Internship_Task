@@ -1,5 +1,5 @@
 # Data Analyst Internship Task
-Sup, Hi, Hello, Good (evening/morning/afternoon). I craeted this repository in purpose to study the [LaTeX](https://en.wikipedia.org/wiki/LaTeX) basis, due to the [Microsoft Word's](https://en.wikipedia.org/wiki/Microsoft_Word) tools are not enogh for me, and perhaps it will be helpful in my future education. However it was the tasks's solution I proud of, because I have been studing the math (entire math) in my own. The task has been presented by AAA Media Corporation [Rambler Group](https://ramblergroup.com/). I'd like to use this repository as a representation of me for the corporations and other people. Soooo, let's plunge into the tasks:)
+Sup, Hi, Hello, Good (evening/morning/afternoon). I created this repository in purpose to study the [LaTeX](https://en.wikipedia.org/wiki/LaTeX) basis, due to the [Microsoft Word's](https://en.wikipedia.org/wiki/Microsoft_Word) tools are not enough for me, and perhaps it will be helpful in my future education. However it was the tasks's solution I proud of, because I have been studying the math (entire math) in my own. The task has been presented by AAA Media Corporation [Rambler Group](https://ramblergroup.com/). I'd like to use this repository as a representation of me for the corporations and other people. Soooo, let's plunge into the tasks:)
 
 ## Table Of Contents
 - [Data Analyst Internship Task](#data-analyst-internship-task)
@@ -25,7 +25,7 @@ This task checks whether how well you know the SQL, or how well you use Google, 
 Rambler Group's advertising campaign uses most fascinating and most memorable banners. Analytics have access to the databases containing data regard the banner' showing. The
 **Shows_table** contains:
 
-- *show_id* - an identier of a showing
+- *show_id* - an identifier of a showing
 - *day* - a day of a showig
 
 | show_id | day        |
@@ -47,12 +47,11 @@ site.)
 | 28735   | 0      |
 | 15627   | 0      |
 
-You need to get all users who clicked at a banner in February 2020, and they din't reject an
-advertising.
+You need to get all users who clicked at a banner in February 2020, and they din't reject an advertising.
 
 ### The Solution
 
-1. First of all, I'd like to obtain all users, I mean the whole database of users, without any fillters. But I banned by the task, because it is clearly said that we need to fetch the "**users**", however I do not really aware what exactly is the "**users**". Ensuing of this I decided to derive the *show_id* (it also can be the *click_id*, result will be the same).
+1. First of all, I'd like to obtain all users, I mean the whole database of users, without any filters. But I banned by the task, because it is clearly said that we need to fetch the "**users**", however I do not really aware what exactly is the "**users**". Ensuing of this I decided to derive the *show_id* (it also can be the *click_id*, result will be the same).
 ```SQL
 SELECT show_id FROM Shows_table
 ```
@@ -218,7 +217,7 @@ The friendly Rambler Group's community likes to play in the table football: At t
 |-------------|
 |P (if one of the teams will finish the tournament without defeat) - ?|
 
-There are two ways to solve it, the FIrst one is the combinatorics and the second is the probability theory. I will show the each one.
+There are two ways to solve it, the First one is the combinatorics and the second is the probability theory. I will show the each one.
 
 #### Combinatorics way
 1. First of all we need to estimate how many games *N* teams plays. Because of each team plays with every another team, therefore the number of games is the number of combination *N* by 2. ("*by 2*" because two teams participate in a game.)
