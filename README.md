@@ -1,5 +1,5 @@
 # Data Analyst Internship Task
-Sup, Hi, Hello, Good (evening/morning/afternoon). I created this repository in purpose to study the [LaTeX](https://en.wikipedia.org/wiki/LaTeX) basis, due to the [Microsoft Word's](https://en.wikipedia.org/wiki/Microsoft_Word) tools are not enough for me, and perhaps it will be helpful in my future education. However it was the tasks's solution I proud of, because I have been studying the math (entire math) in my own. The task has been presented by AAA Media Corporation [Rambler Group](https://ramblergroup.com/). I'd like to use this repository as a representation of me for the corporations and other people. Soooo, let's plunge into the tasks:)
+Sup, Hi, Hello, Good (evening/morning/afternoon). I created this repository in purpose to study the [LaTeX](https://en.wikipedia.org/wiki/LaTeX) basis, due to the [Microsoft Word's](https://en.wikipedia.org/wiki/Microsoft_Word) tools are not enough for me, and perhaps it will be helpful in my future education. The task has been presented by AAA Media Corporation [Rambler Group](https://ramblergroup.com/). I'd like to use this repository as a representation of me (I mean how do I work) for the corporations and other people. Soooo, let's plunge into the tasks:)
 
 ## Table Of Contents
 - [Data Analyst Internship Task](#data-analyst-internship-task)
